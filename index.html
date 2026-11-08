@@ -37,7 +37,7 @@ a{color:var(--pk)}
 <div id="rot">📱 たてむきにしてね</div><div id="app"></div><div id="rest" hidden></div>
 <script data-goatcounter="https://wel-be.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
-const VER='1.4.1',UPD='2026-10-22',KEY='dekitakana.v1';
+const VER='1.4.2',UPD='2026-11-08',KEY='dekitakana.v1';
 const DEF=['えらいね！','すごい！','やったね！','ナイス！','かっこいい！','さすがだね！','ばっちり！'];
 const AV=['av:1','av:2','av:3','av:4','av:5','av:6'],CH=['ch:1','ch:2','ch:3','ch:4','ch:5','ch:6','ch:7','ch:8','ch:9','ch:10'],KI=AV,TI=['🪥','👕','🎒','🍚','🛁','📚','🧸','🧼','🥛','🌙','🧹','✏️','🎹','📄'];
 const app=document.getElementById('app');
@@ -46,7 +46,7 @@ const uid=()=>Math.random().toString(36).slice(2,10);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ds=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 const today=()=>ds(new Date()),shift=(s,n)=>{const [y,m,d]=s.split('-').map(Number);return ds(new Date(y,m-1,d+n))};
-const fresh=()=>({kids:[],gone:[],hist:{},msgs:[],endMsg:'',last:today()});
+const fresh=()=>({kids:[{id:uid(),name:'子ども1',icon:KI[0],char:CH[0],tasks:[],st:{},pos:0,ret:null,t:{min:30,left:null,end:null,total:0}}],gone:[],hist:{},msgs:[],endMsg:'',last:today()});
 function load(){let raw=null;try{localStorage.setItem('dk.t','1');localStorage.removeItem('dk.t');raw=localStorage.getItem(KEY)}catch(e){lock=1}
  try{S=raw?JSON.parse(raw):fresh()}catch(e){S=fresh();lock=1;notices.push('保存データを読み込めませんでした。データを守るため編集を止めています。')}}
 function save(){gc();if(lock===1)return;try{localStorage.setItem(KEY,JSON.stringify(S));saveErr=false}catch(e){saveErr=true}}
